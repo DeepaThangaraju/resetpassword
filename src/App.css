@@ -1,5 +1,13 @@
 .App {
-  text-align: center;
+  margin:0 auto;
+  width:50%;
+  
+}
+.registerform{
+  border: 1px solid black;
+  display: block;
+  align-items:left ;
+  padding: 2rem;
 }
 
 .App-logo {
