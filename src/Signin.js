@@ -27,6 +27,7 @@ export function Signin() {
     const adduser=(newUser)=>{
       fetch(`https://userslogina.herokuapp.com/users`,
       {
+          mode: 'no-cors',
           method: "POST",
           body: JSON.stringify(newUser),
           headers: {
