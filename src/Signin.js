@@ -1,29 +1,34 @@
 import * as yup from 'yup';
 import { useFormik } from "formik";
-import { API_URL } from "./global_constant";
+import {useHistory} from "react-router-dom";
+// import { API_URL } from "./global_constant";
 
 
 const formValidationSchema = yup.object({
     email: yup.string().email("Must be valid email").required("Email is required"),
     password: yup.string().min(4).required("Why not fill the password?"),
 })
+
+const API_URL="https://userslogina.herokuapp.com";
+
 export function Signin() {
+    const history=useHistory();
     const {handleSubmit,values,handleChange,handleBlur,errors,touched}=useFormik({
         initialValues:{
             email:"",
             password:""
         },
         validationSchema: formValidationSchema,
-        onSubmit: ({email,password}) => {
-            console.log("onsubmit", email,password);
-            adduser({email,password});
+        onSubmit: (newUser) => {
+            console.log("onsubmit", newUser);
+            adduser(newUser);
         },
     })
-    const adduser=({email,password})=>{
+    const adduser=(newUser)=>{
       fetch(`${API_URL}/users`,
       {
           method: "POST",
-          body: JSON.stringify({email,password}),
+          body: JSON.stringify(newUser),
           headers: {
               'Content-Type': 'application/json'
           }
