@@ -9,7 +9,7 @@ const formValidationSchema = yup.object({
     password: yup.string().min(4).required("Why not fill the password?"),
 })
 
-const API_URL="https://userslogina.herokuapp.com";
+// const API_URL="https://userslogina.herokuapp.com";
 
 export function Signin() {
     const history=useHistory();
@@ -25,7 +25,7 @@ export function Signin() {
         },
     })
     const adduser=(newUser)=>{
-      fetch(`${API_URL}/users`,
+      fetch(`https://userslogina.herokuapp.com/users`,
       {
           method: "POST",
           body: JSON.stringify(newUser),
