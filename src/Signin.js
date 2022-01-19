@@ -1,6 +1,8 @@
 import * as yup from 'yup';
 import { useFormik } from "formik";
-const c=[];
+import { API_URL } from "./global_constant";
+
+
 const formValidationSchema = yup.object({
     email: yup.string().email("Must be valid email").required("Email is required"),
     password: yup.string().min(4).required("Why not fill the password?"),
@@ -18,7 +20,15 @@ export function Signin() {
         },
     })
     const adduser=({email,password})=>{
-        c.push({email,password});
+      fetch(`${API_URL}/users`,
+      {
+          method: "POST",
+          body: JSON.stringify({email,password}),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+      .then(() => history.push("/users"));
     }
   return (
     <div className="registerform">
